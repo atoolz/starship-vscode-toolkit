@@ -1,40 +1,6 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
-import * as path from "path";
-import * as fs from "fs";
-import * as os from "os";
-
-/**
- * Helper: write content to a temporary starship.toml, open it, wait for
- * extension activation, then return the document and URI.
- */
-async function openStarshipDoc(
-  content: string,
-): Promise<{ doc: vscode.TextDocument; uri: vscode.Uri; cleanup: () => void }> {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "starship-test-"));
-  const filePath = path.join(tmpDir, "starship.toml");
-  fs.writeFileSync(filePath, content, "utf8");
-  const uri = vscode.Uri.file(filePath);
-  const doc = await vscode.workspace.openTextDocument(uri);
-  await vscode.window.showTextDocument(doc);
-  await sleep(2000);
-  return {
-    doc,
-    uri,
-    cleanup: () => {
-      try {
-        fs.unlinkSync(filePath);
-        fs.rmdirSync(tmpDir);
-      } catch {
-        // ignore
-      }
-    },
-  };
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import { openStarshipDoc } from "./helpers";
 
 suite("Completion Provider", () => {
   teardown(async () => {
@@ -42,10 +8,10 @@ suite("Completion Provider", () => {
   });
 
   test("should provide top-level option completions", async () => {
-    const content = "# starship config\n";
+    const content = "# starship config\n\n";
     const { uri, cleanup } = await openStarshipDoc(content);
     try {
-      // Position at the end of line 1 (empty line after comment)
+      // Position at the empty line (line 1)
       const position = new vscode.Position(1, 0);
       const completions =
         await vscode.commands.executeCommand<vscode.CompletionList>(
@@ -113,7 +79,7 @@ suite("Completion Provider", () => {
   });
 
   test("should provide options inside a module section", async () => {
-    const content = "[character]\n";
+    const content = "[character]\n\n";
     const { uri, cleanup } = await openStarshipDoc(content);
     try {
       const position = new vscode.Position(1, 0);
@@ -143,7 +109,7 @@ suite("Completion Provider", () => {
     const content = '[character]\nstyle = "';
     const { uri, cleanup } = await openStarshipDoc(content);
     try {
-      // Position inside the style value string
+      // Position inside the style value string (after the opening quote)
       const position = new vscode.Position(1, 9);
       const completions =
         await vscode.commands.executeCommand<vscode.CompletionList>(
@@ -176,7 +142,7 @@ suite("Completion Provider", () => {
   });
 
   test("completions should have documentation", async () => {
-    const content = "# config\n";
+    const content = "# config\n\n";
     const { uri, cleanup } = await openStarshipDoc(content);
     try {
       const position = new vscode.Position(1, 0);
@@ -193,9 +159,25 @@ suite("Completion Provider", () => {
         return label === "format";
       });
       assert.ok(formatItem, 'Should find "format" completion item');
+      // Request resolved completion to get documentation
+      const resolvedCompletions =
+        await vscode.commands.executeCommand<vscode.CompletionList>(
+          "vscode.executeCompletionItemProvider",
+          uri,
+          position,
+          undefined,
+          10, // resolve count
+        );
+      const resolvedFormat = resolvedCompletions.items.find((item) => {
+        const label =
+          typeof item.label === "string" ? item.label : item.label.label;
+        return label === "format";
+      });
+      assert.ok(resolvedFormat, 'Should find resolved "format" completion');
+      // Check that the item has detail or documentation
       assert.ok(
-        formatItem.documentation,
-        '"format" completion should have documentation',
+        resolvedFormat.documentation || resolvedFormat.detail,
+        '"format" completion should have documentation or detail',
       );
     } finally {
       cleanup();

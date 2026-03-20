@@ -2,7 +2,7 @@
   "name": "starship-vscode-toolkit",
   "displayName": "Starship Toolkit",
   "description": "Complete Starship prompt toolkit: IntelliSense, validation, and documentation for starship.toml configuration",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "andreahlert",
   "author": {
     "name": "Andre Ahlert"
@@ -39,6 +39,14 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "toml",
+        "aliases": ["TOML"],
+        "extensions": [".toml"],
+        "filenames": ["starship.toml"]
+      }
+    ],
     "snippets": [
       {
         "language": "toml",
@@ -51,7 +59,8 @@
     "watch": "node esbuild.js --watch",
     "lint": "tsc --noEmit",
     "package": "vsce package",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test:e2e": "tsc -p ./tsconfig.test.json && node ./dist/test/runTest.js"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
