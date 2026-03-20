@@ -2,7 +2,7 @@
   "name": "starship-vscode-toolkit",
   "displayName": "Starship Toolkit",
   "description": "Complete Starship prompt toolkit: IntelliSense, validation, and documentation for starship.toml configuration",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "atoolz",
   "author": {
     "name": "Andre Ahlert"

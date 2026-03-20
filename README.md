@@ -42,7 +42,7 @@ Full autocompletion for all ~70 Starship modules, their options, style strings, 
 - **Format variables** - Suggest `$symbol`, `$version`, `$branch`, etc. based on the current module
 
 <p align="center">
-  <img src="assets/demo-completion.gif" alt="IntelliSense completions demo" width="700">
+  <img src="assets/demo-syntax.png" alt="IntelliSense completions demo" width="700">
 </p>
 
 ### Hover Documentation
@@ -50,7 +50,7 @@ Full autocompletion for all ~70 Starship modules, their options, style strings, 
 Hover over any module name or option to see its description, type, default value, and a direct link to the Starship documentation.
 
 <p align="center">
-  <img src="assets/demo-hover.gif" alt="Hover documentation demo" width="700">
+  <img src="assets/demo-hover.png" alt="Hover documentation demo" width="700">
 </p>
 
 ### Diagnostics and Validation
@@ -63,7 +63,7 @@ Real-time validation catches configuration errors as you type:
 - Type mismatches (string where boolean expected, etc.)
 
 <p align="center">
-  <img src="assets/demo-diagnostics.gif" alt="Diagnostics and validation demo" width="700">
+  <img src="assets/demo-diagnostics.png" alt="Diagnostics and validation demo" width="700">
 </p>
 
 
