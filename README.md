@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icon.svg" alt="Starship Toolkit" width="128" height="128">
+  <img src="assets/icon.gif" alt="Starship Toolkit" width="128" height="128">
 </p>
 
 <h1 align="center">Starship Toolkit</h1>
