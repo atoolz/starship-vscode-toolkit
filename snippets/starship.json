@@ -1,0 +1,169 @@
+{
+  "Starship Starter Config": {
+    "prefix": "starship-starter",
+    "body": [
+      "# Starship Configuration",
+      "# https://starship.rs/config/",
+      "",
+      "format = \"$all\"",
+      "command_timeout = 500",
+      "scan_timeout = 30",
+      "add_newline = true",
+      "",
+      "[character]",
+      "success_symbol = \"[${1:➜}](bold green)\"",
+      "error_symbol = \"[${2:✗}](bold red)\"",
+      "",
+      "[directory]",
+      "truncation_length = ${3:3}",
+      "truncate_to_repo = true",
+      "style = \"bold cyan\"",
+      "",
+      "[git_branch]",
+      "symbol = \"${4:🌱 }\"",
+      "style = \"bold purple\"",
+      "",
+      "[git_status]",
+      "style = \"bold red\"",
+      ""
+    ],
+    "description": "A complete Starship starter configuration with common settings"
+  },
+  "Git Module Config": {
+    "prefix": "starship-git",
+    "body": [
+      "[git_branch]",
+      "symbol = \"${1:🌱 }\"",
+      "style = \"bold purple\"",
+      "format = \"[$symbol$branch]($style) \"",
+      "truncation_length = ${2:20}",
+      "",
+      "[git_commit]",
+      "commit_hash_length = ${3:7}",
+      "style = \"bold green\"",
+      "tag_symbol = \" 🏷 \"",
+      "",
+      "[git_status]",
+      "conflicted = \"⚔️ \"",
+      "ahead = \"⇡\\${count}\"",
+      "behind = \"⇣\\${count}\"",
+      "diverged = \"⇕⇡\\${ahead_count}⇣\\${behind_count}\"",
+      "modified = \"!\"",
+      "staged = \"+\"",
+      "untracked = \"?\"",
+      "stashed = \"\\$\"",
+      "style = \"bold red\"",
+      "",
+      "[git_metrics]",
+      "disabled = false",
+      "added_style = \"bold green\"",
+      "deleted_style = \"bold red\"",
+      ""
+    ],
+    "description": "Complete Git configuration with branch, commit, status, and metrics"
+  },
+  "Node.js Module Config": {
+    "prefix": "starship-node",
+    "body": [
+      "[nodejs]",
+      "symbol = \"${1:⬢ }\"",
+      "style = \"bold green\"",
+      "format = \"via [$symbol($version )]($style)\"",
+      "detect_files = [\"package.json\", \".node-version\", \".nvmrc\"]",
+      "detect_extensions = [\"js\", \"mjs\", \"cjs\", \"ts\", \"mts\", \"cts\"]",
+      ""
+    ],
+    "description": "Node.js module configuration"
+  },
+  "Python Module Config": {
+    "prefix": "starship-python",
+    "body": [
+      "[python]",
+      "symbol = \"${1:🐍 }\"",
+      "style = \"bold yellow\"",
+      "format = \"via [\\${symbol}\\${pyenv_prefix}(\\${version} )(\\\\(\\${virtualenv}\\\\) )]($style)\"",
+      "detect_extensions = [\"py\"]",
+      "detect_files = [\"requirements.txt\", \"pyproject.toml\", \"Pipfile\", \"setup.py\"]",
+      "python_binary = [\"python\", \"python3\", \"python2\"]",
+      ""
+    ],
+    "description": "Python module configuration with virtualenv support"
+  },
+  "Rust Module Config": {
+    "prefix": "starship-rust",
+    "body": [
+      "[rust]",
+      "symbol = \"${1:🦀 }\"",
+      "style = \"bold red\"",
+      "format = \"via [$symbol($version )]($style)\"",
+      "detect_files = [\"Cargo.toml\"]",
+      "detect_extensions = [\"rs\"]",
+      ""
+    ],
+    "description": "Rust module configuration"
+  },
+  "Docker Module Config": {
+    "prefix": "starship-docker",
+    "body": [
+      "[docker_context]",
+      "symbol = \"${1:🐳 }\"",
+      "style = \"blue bold\"",
+      "format = \"via [$symbol$context]($style) \"",
+      "only_with_files = true",
+      "detect_files = [\"docker-compose.yml\", \"docker-compose.yaml\", \"Dockerfile\"]",
+      ""
+    ],
+    "description": "Docker context module configuration"
+  },
+  "Kubernetes Module Config": {
+    "prefix": "starship-kubernetes",
+    "body": [
+      "[kubernetes]",
+      "disabled = false",
+      "symbol = \"${1:☸ }\"",
+      "style = \"bold cyan\"",
+      "format = \"[$symbol$context( \\\\($namespace\\\\))]($style) in \"",
+      ""
+    ],
+    "description": "Kubernetes module configuration"
+  },
+  "Custom Module Template": {
+    "prefix": "starship-custom",
+    "body": [
+      "[custom.${1:name}]",
+      "command = \"${2:echo hello}\"",
+      "when = \"${3:true}\"",
+      "symbol = \"${4:★ }\"",
+      "style = \"${5:bold green}\"",
+      "format = \"[$symbol($output )]($style)\"",
+      "description = \"${6:Custom module description}\"",
+      ""
+    ],
+    "description": "Custom module template"
+  },
+  "AWS Module Config": {
+    "prefix": "starship-aws",
+    "body": [
+      "[aws]",
+      "disabled = false",
+      "symbol = \"${1:☁️  }\"",
+      "style = \"bold yellow\"",
+      "format = \"on [$symbol($profile )(\\\\($region\\\\) )(\\\\[$duration\\\\] )]($style)\"",
+      ""
+    ],
+    "description": "AWS module configuration"
+  },
+  "Time Module Config": {
+    "prefix": "starship-time",
+    "body": [
+      "[time]",
+      "disabled = false",
+      "style = \"bold yellow\"",
+      "format = \"at [$time]($style) \"",
+      "time_format = \"${1:%T}\"",
+      "use_12hr = ${2:false}",
+      ""
+    ],
+    "description": "Time module configuration"
+  }
+}

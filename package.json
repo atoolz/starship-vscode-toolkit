@@ -1,0 +1,62 @@
+{
+  "name": "starship-vscode-toolkit",
+  "displayName": "Starship Toolkit",
+  "description": "Complete Starship prompt toolkit: IntelliSense, validation, and documentation for starship.toml configuration",
+  "version": "0.1.0",
+  "publisher": "andreahlert",
+  "author": {
+    "name": "Andre Ahlert"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andreahlert/starship-vscode-toolkit"
+  },
+  "bugs": {
+    "url": "https://github.com/andreahlert/starship-vscode-toolkit/issues"
+  },
+  "homepage": "https://github.com/andreahlert/starship-vscode-toolkit#readme",
+  "icon": "assets/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "keywords": [
+    "starship",
+    "prompt",
+    "toml",
+    "shell",
+    "terminal",
+    "config"
+  ],
+  "activationEvents": [
+    "onLanguage:toml",
+    "workspaceContains:**/starship.toml"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "toml",
+        "path": "./snippets/starship.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "lint": "tsc --noEmit",
+    "package": "vsce package",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  }
+}
