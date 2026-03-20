@@ -1,0 +1,13 @@
+# Invalid config for diagnostic tests
+unknown_top_option = true
+command_timeout = "not a number"
+
+[nonexistent_module]
+disabled = false
+
+[character]
+unknown_option = true
+style = "bold supercolor"
+
+[directory]
+truncation_length = "abc"

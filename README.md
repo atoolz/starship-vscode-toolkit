@@ -1,5 +1,4 @@
 <p align="center">
-  <img src="assets/icon.gif" alt="Starship Toolkit" width="128" height="128">
 </p>
 
 <h1 align="center">Starship Toolkit</h1>
@@ -38,13 +37,11 @@ Full autocompletion for all ~70 Starship modules, their options, style strings, 
 - **Style strings** - Complete modifiers (`bold`, `italic`, `dimmed`) and colors (`red`, `fg:#hex`, `bg:blue`)
 - **Format variables** - Suggest `$symbol`, `$version`, `$branch`, etc. based on the current module
 
-![Completion Demo](assets/demo-completion.gif)
 
 ### Hover Documentation
 
 Hover over any module name or option to see its description, type, default value, and a direct link to the Starship documentation.
 
-![Hover Demo](assets/demo-hover.gif)
 
 ### Diagnostics and Validation
 
@@ -55,7 +52,6 @@ Real-time validation catches configuration errors as you type:
 - Invalid style strings
 - Type mismatches (string where boolean expected, etc.)
 
-![Diagnostics Demo](assets/demo-diagnostics.gif)
 
 ### Snippets
 
